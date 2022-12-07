@@ -30,12 +30,13 @@ def get_games_played():
 def validate_data(values):
     """
     Inside the try, this raises a ValueError if the strings
-    do not match the date on the google sheet.
+    do not match how many colums there are in the sheet
     """
     try:
+        [int(value) for value in values]
         if len(values) != 5:
             raise ValueError(
-                f'Exactly 5 values are required, you provided {len(values)}'
+                f'Exactly 5 enteries are required, you provided {len(values)}'
             )
     except ValueError as e:
         print(f'Invald data: {e} please try again.\n')
