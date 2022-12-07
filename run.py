@@ -13,17 +13,32 @@ GSPREAD_CLIENT = gspread.authorize(SCOPED_CREDS)
 SHEET = GSPREAD_CLIENT.open('premier_leauge_stats')
 
 
-def get_games_by_date():
+def get_games_played():
     """
-    User to enter any date in the 2021/2022 football 
-    season and pull games played on that date
+    User to enter how many games a team has played
     """
-    print("Enter any date between 13/08/2021 and 22/05/2022")
-    print("Data should be in this format 00/00/0000")
-    print("Example 13/04/2022\n")
+    print("Enter games played for each team")
+    print("Arsenal, Man City, Newcastle, Tottenham, Man United")
+    print("Example: 23,56,78,98,65\n")
 
     data_str = input("Enter your data here: ")
-    print(f"The data provided is {data_str}")
+    
+    games_played = data_str.split(",")
+    validate_data(games_played)
 
 
-get_games_by_date()
+def validate_data(values):
+    """
+    Inside the try, this raises a ValueError if the strings
+    do not match the date on the google sheet.
+    """
+    try:
+        if len(values) != 5:
+            raise ValueError(
+                f'Exactly 5 values are required, you provided {len(values)}'
+            )
+    except ValueError as e:
+        print(f'Invald data: {e} please try again.\n')
+
+
+get_games_played()
