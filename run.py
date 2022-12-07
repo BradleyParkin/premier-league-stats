@@ -51,4 +51,18 @@ def validate_data(values):
     return True
 
 
+def update_games_played_worksheet(data):
+    """
+    Will update the games_played worksheet with any 
+    data that is provided by the user
+    """
+    print("Updating the Games Played spreadsheet\n")
+    games_played_worksheet = SHEET.worksheet("games_played")
+    games_played_worksheet.append_row(data)
+    print("Games Played spreadsheet has been updated correctly!\n")
+
+
 data = get_games_played()
+games_played = [int(num) for num in data]
+update_games_played_worksheet(games_played)
+
