@@ -17,14 +17,20 @@ def get_games_played():
     """
     User to enter how many games a team has played
     """
-    print("Enter games played for each team")
-    print("Arsenal, Man City, Newcastle, Tottenham, Man United")
-    print("Example: 23,56,78,98,65\n")
+    while True:
+        print("Enter games played for each team")
+        print("Arsenal, Man City, Newcastle, Tottenham, Man United")
+        print("Example: 23,56,78,98,65\n")
 
-    data_str = input("Enter your data here: ")
-    
-    games_played = data_str.split(",")
-    validate_data(games_played)
+        data_str = input("Enter your data here: ")
+        
+        games_played = data_str.split(",")
+        
+        if validate_data(games_played):
+            print("Your entry is correct")
+            break
+
+    return games_played
 
 
 def validate_data(values):
@@ -40,6 +46,9 @@ def validate_data(values):
             )
     except ValueError as e:
         print(f'Invald data: {e} please try again.\n')
+        return False
+   
+    return True
 
 
-get_games_played()
+data = get_games_played()
