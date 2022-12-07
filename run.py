@@ -62,7 +62,48 @@ def update_games_played_worksheet(data):
     print("Games Played spreadsheet has been updated correctly!\n")
 
 
-data = get_games_played()
-games_played = [int(num) for num in data]
-update_games_played_worksheet(games_played)
+def get_games_lost():
+    """
+    User to enter how many games a team has lost
+    """
+    while True:
+        print("Enter how many games each team has lost")
+        print("Arsenal, Man City, Newcastle, Tottenham, Man United")
+        print("Example: 23,56,78,98,65\n")
 
+        data_str = input("Enter your data here: ")
+        
+        games_lost = data_str.split(",")
+        
+        if validate_data(games_lost):
+            print("Your entry is correct")
+            break
+
+    return games_lost
+
+
+def update_games_lost_worksheet(data):
+    """
+    Will update the games_lost worksheet with any 
+    data that is provided by the user
+    """
+    print("Updating the Games Lost spreadsheet\n")
+    games_lost_worksheet = SHEET.worksheet("games_lost")
+    games_lost_worksheet.append_row(data)
+    print("Games Lost spreadsheet has been updated correctly!\n")
+
+
+def master():
+    """
+    Run all the program functions
+    """
+    data = get_games_played()
+    games_played = [int(num) for num in data]
+    update_games_played_worksheet(games_played)
+    data = get_games_lost()
+    games_lost = [int(num) for num in data]
+    update_games_lost_worksheet(games_lost)
+
+
+print("Welcome to the Premier Leauge data Automation\n")
+master()
