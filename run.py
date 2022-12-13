@@ -140,6 +140,17 @@ def calculate_win_percentage(games_played_row):
     return win_percentage_data
 
 
+def update_win_percentage_worksheet(data):
+    """
+    Will update the win_percentage worksheet with any 
+    data that is provided by the user
+    """
+    print("Updating the Win Percentage spreadsheet\n")
+    win_percentage_worksheet = SHEET.worksheet("win_percentage")
+    win_percentage_worksheet.append_row(data)
+    print("Win Percentage spreadsheet has been updated correctly!\n")
+
+
 def master():
     """
     Run all the program functions
@@ -166,10 +177,11 @@ def master():
     games_won = [int(num) for num in data]
     update_games_won_worksheet(games_won)
     """
-    Caulcate the games won percentage
+    Caulcate the games win percentage
     """
     new_win_data = calculate_win_percentage(games_played)
     print(new_win_data)
+    update_win_percentage_worksheet(new_win_data)
 
 
 print("Welcome to the Premier Leauge data Automation\n")
