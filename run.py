@@ -124,19 +124,45 @@ def update_games_won_worksheet(data):
     print("Games Won spreadsheet has been updated correctly!\n")
 
 
+def calculate_win_percentage(games_won_row):
+    """
+    Calculate the win percentage of each team
+    """
+    print("Calculating the win percentage!...\n")
+    win_percentage = SHEET.worksheet("win_percentage").get_all_values()
+    games_winner_row = win_percentage[-1]
+    print(games_winner_row)
+
+
 def master():
     """
     Run all the program functions
     """
+    """
+    Get games played will update information for how many
+    games each team has played.
+    """
     data = get_games_played()
     games_played = [int(num) for num in data]
     update_games_played_worksheet(games_played)
+    """
+    Get games lost will update information for how many
+    games each team has lost.
+    """
     data = get_games_lost()
     games_lost = [int(num) for num in data]
     update_games_lost_worksheet(games_lost)
+    """
+    Get games won will update information for how many
+    games each team has won.
+    """
     data = get_games_won()
     games_won = [int(num) for num in data]
     update_games_won_worksheet(games_won)
+    """
+    Caulcate the games won percentage
+    """
+    calculate_win_percentage(games_won)
 
 
 print("Welcome to the Premier Leauge data Automation\n")
