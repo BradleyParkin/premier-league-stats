@@ -1,3 +1,6 @@
+"""
+Imports
+"""
 import gspread
 from google.oauth2.service_account import Credentials
 
@@ -23,9 +26,9 @@ def get_games_played():
         print("Example: 23,56,78,98,65\n")
 
         data_str = input("Enter your data here: ")
-        
+
         games_played = data_str.split(",")
-        
+
         if validate_data(games_played):
             print("Your entry is correct")
             break
@@ -47,13 +50,13 @@ def validate_data(values):
     except ValueError as e:
         print(f'Invald data: {e} please try again.\n')
         return False
-   
+
     return True
 
 
 def update_games_played_worksheet(data):
     """
-    Will update the games_played worksheet with any 
+    Will update the games_played worksheet with any
     data that is provided by the user
     """
     print("Updating the Games Played spreadsheet\n")
@@ -72,9 +75,9 @@ def get_games_lost():
         print("Example: 23,56,78,98,65\n")
 
         data_str = input("Enter your data here: ")
-        
+
         games_lost = data_str.split(",")
-        
+
         if validate_data(games_lost):
             print("Your entry is correct")
             break
@@ -84,7 +87,7 @@ def get_games_lost():
 
 def update_games_lost_worksheet(data):
     """
-    Will update the games_lost worksheet with any 
+    Will update the games_lost worksheet with any
     data that is provided by the user
     """
     print("Updating the Games Lost spreadsheet\n")
@@ -103,9 +106,9 @@ def get_games_won():
         print("Example: 23,56,78,98,65\n")
 
         data_str = input("Enter your data here: ")
-        
+
         games_won = data_str.split(",")
-        
+
         if validate_data(games_won):
             print("Your entry is correct")
             break
@@ -115,7 +118,7 @@ def get_games_won():
 
 def update_games_won_worksheet(data):
     """
-    Will update the games_won worksheet with any 
+    Will update the games_won worksheet with any
     data that is provided by the user
     """
     print("Updating the Games Won spreadsheet\n")
@@ -131,18 +134,18 @@ def calculate_win_percentage(games_played_row):
     print("Calculating the win percentage!...\n")
     games_won = SHEET.worksheet("games_won").get_all_values()
     games_won_row = games_won[-1]
-    
+
     win_percentage_data = []
     for games_played, games_won in zip(games_played_row, games_won_row):
         win_percentage = int(games_won) / games_played * 100
         win_percentage_data.append(win_percentage)
-    
+
     return win_percentage_data
 
 
 def update_win_percentage_worksheet(data):
     """
-    Will update the win_percentage worksheet with any 
+    Will update the win_percentage worksheet with any
     data that is provided by the user
     """
     print("Updating the Win Percentage spreadsheet\n")
@@ -158,18 +161,18 @@ def calculate_lost_percentage(games_played_row):
     print("Calculating the lost percentage!...\n")
     games_lost = SHEET.worksheet("games_lost").get_all_values()
     games_lost_row = games_lost[-1]
-    
+
     lost_percentage_data = []
     for games_played, games_lost in zip(games_played_row, games_lost_row):
         lost_percentage = int(games_lost) / games_played * 100
         lost_percentage_data.append(lost_percentage)
-    
+
     return lost_percentage_data
 
 
 def update_lost_percentage_worksheet(data):
     """
-    Will update the lost_percentage worksheet with any 
+    Will update the lost_percentage worksheet with any
     data that is provided by the user
     """
     print("Updating the Lost Percentage spreadsheet\n")
@@ -182,36 +185,27 @@ def master():
     """
     Run all the program functions
     """
-    """
-    Get games played will update information for how many
-    games each team has played.
-    """
+
+    # Get games played will update information for how many
+    # games each team has played.
     data = get_games_played()
     games_played = [int(num) for num in data]
     update_games_played_worksheet(games_played)
-    """
-    Get games lost will update information for how many
-    games each team has lost.
-    """
+    # Get games lost will update information for how many
+    # games each team has lost.
     data = get_games_lost()
     games_lost = [int(num) for num in data]
     update_games_lost_worksheet(games_lost)
-    """
-    Get games won will update information for how many
-    games each team has won.
-    """
+    # Get games won will update information for how many
+    # games each team has won.
     data = get_games_won()
     games_won = [int(num) for num in data]
     update_games_won_worksheet(games_won)
-    """
-    Caulcate the games win percentage
-    """
+    # Caulcate the games win percentage
     new_win_data = calculate_win_percentage(games_played)
     print(new_win_data)
     update_win_percentage_worksheet(new_win_data)
-    """
-    Calculate the games lost percentage
-    """
+    # Calculate the games lost percentage
     new_lost_data = calculate_lost_percentage(games_played)
     print(new_lost_data)
     update_lost_percentage_worksheet(new_lost_data)
