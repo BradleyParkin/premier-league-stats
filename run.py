@@ -151,6 +151,33 @@ def update_win_percentage_worksheet(data):
     print("Win Percentage spreadsheet has been updated correctly!\n")
 
 
+def calculate_lost_percentage(games_played_row):
+    """
+    Calculate the lost percentage of each team
+    """
+    print("Calculating the lost percentage!...\n")
+    games_lost = SHEET.worksheet("games_lost").get_all_values()
+    games_lost_row = games_lost[-1]
+    
+    lost_percentage_data = []
+    for games_played, games_lost in zip(games_played_row, games_lost_row):
+        lost_percentage = int(games_lost) / games_played * 100
+        lost_percentage_data.append(lost_percentage)
+    
+    return lost_percentage_data
+
+
+def update_lost_percentage_worksheet(data):
+    """
+    Will update the lost_percentage worksheet with any 
+    data that is provided by the user
+    """
+    print("Updating the Lost Percentage spreadsheet\n")
+    lost_percentage_worksheet = SHEET.worksheet("lost_percentage")
+    lost_percentage_worksheet.append_row(data)
+    print("Lost Percentage spreadsheet has been updated correctly!\n")
+
+
 def master():
     """
     Run all the program functions
@@ -182,6 +209,12 @@ def master():
     new_win_data = calculate_win_percentage(games_played)
     print(new_win_data)
     update_win_percentage_worksheet(new_win_data)
+    """
+    Calculate the games lost percentage
+    """
+    new_lost_data = calculate_lost_percentage(games_played)
+    print(new_lost_data)
+    update_lost_percentage_worksheet(new_lost_data)
 
 
 print("Welcome to the Premier Leauge data Automation\n")
