@@ -27,6 +27,12 @@ def validate_data(values):
             raise ValueError(
                 f'Exactly 5 enteries are required, you provided {len(values)}'
             )
+        for value in values:
+            if (int(value)) < 0:
+                raise ValueError(
+                    f'Must be a number 0 or higher, you provided {value}'
+                )
+
     except ValueError as e:
         print(f'Invald data: {e} please try again.\n')
         return False
