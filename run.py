@@ -16,26 +16,6 @@ GSPREAD_CLIENT = gspread.authorize(SCOPED_CREDS)
 SHEET = GSPREAD_CLIENT.open('premier_leauge_stats')
 
 
-def get_games_played():
-    """
-    User to enter how many games a team has played
-    """
-    while True:
-        print("Enter games played for each team")
-        print("Arsenal, Man City, Newcastle, Tottenham, Man United")
-        print("Example: 23,56,78,98,65\n")
-
-        data_str = input("Enter your data here: ")
-
-        games_played = data_str.split(",")
-
-        if validate_data(games_played):
-            print("Your entry is correct")
-            break
-
-    return games_played
-
-
 def validate_data(values):
     """
     Inside the try, this raises a ValueError if the strings
@@ -186,11 +166,6 @@ def master():
     Run all the program functions
     """
 
-    # Get games played will update information for how many
-    # games each team has played.
-    data = get_games_played()
-    games_played = [int(num) for num in data]
-    update_games_played_worksheet(games_played)
     # Get games lost will update information for how many
     # games each team has lost.
     data = get_games_lost()
@@ -201,6 +176,12 @@ def master():
     data = get_games_won()
     games_won = [int(num) for num in data]
     update_games_won_worksheet(games_won)
+    # Calculate how many games have been played
+    games_played = []
+    for i in range(len(games_lost)):
+        played = games_lost[i] + games_won[i]
+        games_played.append(played)
+    update_games_played_worksheet(games_played)
     # Caulcate the games win percentage
     new_win_data = calculate_win_percentage(games_played)
     print(new_win_data)
@@ -209,7 +190,7 @@ def master():
     new_lost_data = calculate_lost_percentage(games_played)
     print(new_lost_data)
     update_lost_percentage_worksheet(new_lost_data)
-
+    
 
 print("Welcome to the Premier Leauge data Automation\n")
 master()
