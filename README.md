@@ -1,31 +1,60 @@
-![CI logo](https://codeinstitute.s3.amazonaws.com/fullstack/ci_logo_small.png)
+# Premier Leauge Data Automation
 
-Welcome BradleyParkin,
+Premier Leauge Data Automation is a Python automation application that runs in the Code Institute most terminal on Heroku.
 
-This is the Code Institute student template for deploying your third portfolio project, the Python command-line project. The last update to this file was: **August 17, 2021**
+Users can enter their own set of data, which is how many games a team has won and lost. This will automatically add up the total games played, and will also then show the user the win and loss percentage for each team.
 
-## Reminders
+[Here is the live version of my project](https://premier-leauge-data-automation.herokuapp.com/)
 
-* Your code must be placed in the `run.py` file
-* Your dependencies must be placed in the `requirements.txt` file
-* Do not edit any of the other files or your code may not deploy properly
+![Responesive Image](/images/python-responsive.png)
 
-## Creating the Heroku app
+# How to use and features
 
-When you create the app, you will need to add two buildpacks from the _Settings_ tab. The ordering is as follows:
+The user will enter the data of games lost for the 5 teams shown on the terminal, Arsenal, Man City, Newcastle, Tottenham Hotspur and Man United in that order. 
 
-1. `heroku/python`
-2. `heroku/nodejs`
+![games lost](/images/games-lost.png)
 
-You must then create a _Config Var_ called `PORT`. Set this to `8000`
+The user will enter the data of games won for the 5 teams shown on the terminal, Arsenal, Man City, Newcastle, Tottenham Hotspur and Man United in that order.
 
-If you have credentials, such as in the Love Sandwiches project, you must create another _Config Var_ called `CREDS` and paste the JSON into the value field.
+![games won](/images/games-won.png)
 
-Connect your GitHub repository and deploy as normal.
+Once the user has entered both data sets, the terminal will print out the win and loss percentage of the games data the user has just entered. It will also update the google docs spreadsheet. You can find that here [Premier Leauge Data Automation](https://docs.google.com/spreadsheets/d/1NixGI6ijamkOwq2-ysSxNphr1lbLTwgt0pzWUn69NHk/edit?usp=sharing)
 
-## Constraints
+![games updated](/images/games-updated.png)
 
-The deployment terminal is set to 80 columns by 24 rows. That means that each line of text needs to be 80 characters or less otherwise it will be wrapped onto a second line.
+# Testing
 
------
-Happy coding!
+I have manually tested the project by doing the follow:
+
+* I have passed the code through the [CI Python Linter](https://pep8ci.herokuapp.com/#) and can confirm there are no issues.
+* Given invalid inputs, strings when numbers are expected and if a number less than 0 is entered into the field it will throw an error.
+* Tested in my local terminal and the Code Institute Heroku terminal.
+
+# Bugs
+
+Solved Bugs
+
+* When i wrote the project, when i was entering numbers i was getting the str and int error, this was becuase i had not added the (int).
+
+Validator Testing
+
+* PEPB
+    * No errors were were returned from testing for PEPB8(Code Institute's own)
+
+# Deployment
+
+This project was deployed using Code Institute's mock terminal for Heroku.
+
+* How is it deployed
+    * You can clone this repositry
+    * Create a new Heroku app
+    * Set the build backs to Python and NodeJS in that order
+    * Link the Heroku app to the repositry
+    * Click Deploy
+
+# Credits
+
+* Code Institute for the deployment terminal.
+* Used the Love Sandwiches project to base my code and functinality from that. 
+* Tutor/Online Tutor for help on validating inputs
+
