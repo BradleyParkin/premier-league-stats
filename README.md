@@ -56,5 +56,5 @@ This project was deployed using Code Institute's mock terminal for Heroku.
 
 * Code Institute for the deployment terminal.
 * Used the Love Sandwiches project to base my code and functinality from that. 
-* Tutor/Online Tutor for help on validating inputs
+* Tutor/Code Institute Tutor for help on validating inputs
 
