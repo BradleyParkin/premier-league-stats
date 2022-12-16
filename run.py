@@ -22,7 +22,7 @@ def validate_data(values):
     do not match how many colums there are in the sheet
     """
     try:
-        [int(value) for value in values]
+        _ = [int(value) for value in values]
         if len(values) != 5:
             raise ValueError(
                 f'Exactly 5 enteries are required, you provided {len(values)}'
@@ -59,6 +59,7 @@ def get_games_lost():
         print("Enter how many games each team has lost")
         print("Arsenal, Man City, Newcastle, Tottenham, Man United")
         print("Example: 23,56,78,98,65\n")
+        print("You must enter 5 numbers to match the amount of teams\n")
 
         data_str = input("Enter your data here: ")
 
@@ -90,6 +91,7 @@ def get_games_won():
         print("Enter how many games each team has won")
         print("Arsenal, Man City, Newcastle, Tottenham, Man United")
         print("Example: 23,56,78,98,65\n")
+        print("You must enter 5 numbers to match the amount of teams\n")
 
         data_str = input("Enter your data here: ")
 
@@ -196,7 +198,7 @@ def master():
     new_lost_data = calculate_lost_percentage(games_played)
     print(new_lost_data)
     update_lost_percentage_worksheet(new_lost_data)
-    
+
 
 print("Welcome to the Premier Leauge data Automation\n")
 master()
