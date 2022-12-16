@@ -1,6 +1,6 @@
 # Premier Leauge Data Automation
 
-Premier Leauge Data Automation is a Python automation application that runs in the Code Institute most terminal on Heroku.
+Premier Leauge Data Automation is a Python automation application that runs in the Code Institute mock terminal on Heroku.
 
 Users can enter their own set of data, which is how many games a team has won and lost. This will automatically add up the total games played, and will also then show the user the win and loss percentage for each team.
 
@@ -34,12 +34,12 @@ I have manually tested the project by doing the follow:
 
 Solved Bugs
 
-* When i wrote the project, when i was entering numbers i was getting the str and int error, this was becuase i had not added the (int).
+* When i wrote the project, i was entering numbers and i was getting the str and int error, this was becuase i had not added the (int).
 
 Validator Testing
 
 * PEPB
-    * No errors were were returned from testing for PEPB8(Code Institute's own)
+    * No errors were were returned from testing for PEPB8(Code Institute's own application)
 
 # Deployment
 
